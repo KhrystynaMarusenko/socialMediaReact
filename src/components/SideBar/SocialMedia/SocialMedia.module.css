@@ -1,0 +1,21 @@
+.socialMediaHolder{
+    padding: 5px;
+}
+
+.socialMedia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.socialMedia a{
+    color: #E8E8E8;
+    font-size: 20px;
+    transition: all .5s ease-in-out;
+}
+
+.socialMedia a:hover{
+    padding-right: 20px;
+    border-right: 2px solid #E8E8E8;
+}

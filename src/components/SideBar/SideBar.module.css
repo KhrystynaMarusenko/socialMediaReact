@@ -1,0 +1,9 @@
+.sideBar{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: sticky;
+    border: 1px solid rgba(232, 232, 232, 0.5);
+
+}
+

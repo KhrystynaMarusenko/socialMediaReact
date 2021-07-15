@@ -1,0 +1,39 @@
+.nav{
+    grid-area: nav;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    border: 1px solid rgba(232, 232, 232, 0.5);
+    border-left: none;
+}
+
+.item{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item a{
+    display: block;
+    transition: all .7s ease-in-out;
+    width: 50%;
+    text-align: center;
+
+}
+
+.item a:hover{
+    padding-bottom: 10px;
+    transform: scale(1.2);
+    border-bottom: 5px solid rgba(232, 232, 232, 0.5);
+}
+
+.links{
+    text-decoration: none;
+    color: #E8E8E8;
+    font-size: 20px;
+}
+

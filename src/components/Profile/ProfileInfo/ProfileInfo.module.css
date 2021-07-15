@@ -1,0 +1,30 @@
+
+
+.profileInfoHolder{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.imgHolder{
+    width: 400px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    float: right;
+}
+.imgHolder img{
+    position: absolute;
+    height: 100%;
+    width: auto;
+}
+
+.profileName{
+    font-size: 3em;
+    transition: all 1s ease-in-out;
+}
+
+.item{
+    width: 45%;
+}
