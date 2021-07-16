@@ -19,7 +19,7 @@ function App(props) {
                 <SideBar/>
                 <div className='content'>
                     <Route path='/profile' render={() => <Profile state={props.appState.profilePage} dispatch={props.dispatch}/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs state={props.appState.dialogPage}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs state={props.appState.dialogPage} dispatch={props.dispatch} />}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
