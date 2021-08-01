@@ -8,6 +8,9 @@ const Nav = () =>{
                 <NavLink to='/profile'className={classes.links}>Profile</NavLink>
             </div>
             <div className={classes.item}>
+                <NavLink to='/users'className={classes.links}>Users</NavLink>
+            </div>
+            <div className={classes.item}>
                 <NavLink to='/dialogs'className={classes.links}>Messages</NavLink>
             </div>
             <div className={classes.item}>
@@ -19,6 +22,7 @@ const Nav = () =>{
             <div className={classes.item}>
                 <NavLink to='/settings'className={classes.links}>Settings</NavLink>
             </div>
+
         </nav>
     )
 

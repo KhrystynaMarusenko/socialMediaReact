@@ -2,23 +2,21 @@ import React from "react";
 
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/prof-reducer";
 
 
 
 const MyPosts = (props) => {
-
-    let postsElements = props.state.posts.map(item => <Post message={item.message} likesCount={item.likesCount}/>)
-
     let newPostElement = React.createRef();
 
-    let addPost = () =>{
-        props.dispatch(addPostActionCreator())
+    let postsElements = props.posts.map(item => <Post message={item.message} likesCount={item.likesCount}/>)
+
+    let onAddPost = () =>{
+        props.addPost();
     }
 
     let onPostChange = () =>{
         let text = newPostElement.current.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.updateNewPostText(text);
     }
 
     return (
@@ -27,10 +25,10 @@ const MyPosts = (props) => {
                 <h2>My posts</h2>
                 <div className={classes.addPostHolder}>
                     <div>
-                        <input onChange={onPostChange} value={props.state.newPostText} className={classes.addPostInput} ref={newPostElement}></input>
+                        <input onChange={onPostChange} value={props.newPostText} className={classes.addPostInput} ref={newPostElement}/>
                     </div>
                     <div>
-                        <button className={classes.addPostBtn} onClick={ addPost }>Add post</button>
+                        <button className={classes.addPostBtn} onClick={ onAddPost }>Add post</button>
                     </div>
                 </div>
 
