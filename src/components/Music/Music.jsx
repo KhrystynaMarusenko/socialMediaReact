@@ -4,7 +4,7 @@ import classes from './Music.module.css'
 const Music= () =>{
     return(
         <div>
-            News
+            Music
         </div>
     )
 }

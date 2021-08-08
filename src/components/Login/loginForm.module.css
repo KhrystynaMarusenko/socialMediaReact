@@ -1,0 +1,67 @@
+.form{
+    max-width: 500px;
+    margin: 10px auto;
+    border: 1px solid black;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+
+.title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.inputHolder{
+    display: flex;
+    flex-flow: row nowrap;
+    line-height: 2em;
+    margin: 5px;
+}
+
+.inputHolder > input{
+    background-color: #282727;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 10px ;
+}
+
+
+.label{
+    width: 110px;
+    font-size: 1em;
+    line-height: 32px;
+}
+
+.buttonsHolder {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.button {
+    margin: 0 10px;
+    padding: 4px 8px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #282727;
+    cursor: pointer;
+}
+
+.span{
+    line-height: 32px;
+    margin-left: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.checkbox{
+    margin-left: 15px;
+    cursor: pointer;
+}

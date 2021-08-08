@@ -1,17 +1,21 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 
 let initialState = {
     users: [],
-    pageSize: 4,
+    pageSize: 10,
     totalUsersCount: 100,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    isFollowingInProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -48,11 +52,19 @@ const usersReducer = (state = initialState, action) => {
             }
         case SET_TOTAL_USERS_COUNT:
             return {
-                ...state,totalUsersCount: action.totalUsersCount
+                ...state, totalUsersCount: action.totalUsersCount
             }
         case TOGGLE_IS_FETCHING:
             return {
                 ...state, isFetching: action.isFetching
+            }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                isFollowingInProgress: action.isFollowingInProgress
+                    ? [...state.isFollowingInProgress, action.userId]
+                    : state.isFollowingInProgress.filter(id => id !== action.userId)
+
             }
         default:
             return state;
@@ -60,13 +72,13 @@ const usersReducer = (state = initialState, action) => {
 
 }
 
-export const follow = (userID) => {
+export const followSuccess = (userID) => {
     return {
         type: FOLLOW,
         userID
     }
 }
-export const unFollow = (userID) => {
+export const unFollowSuccess = (userID) => {
     return {
         type: UNFOLLOW,
         userID
@@ -94,6 +106,50 @@ export const setIsFetching = (isFetching) => {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching
+    }
+}
+export const setIsFollowingInProgress = (isFollowingInProgress, userId) => {
+    return {
+        type: TOGGLE_IS_FOLLOWING_PROGRESS,
+        isFollowingInProgress,
+        userId
+    }
+}
+
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setIsFetching(false))
+                dispatch(setUsers(data.items))
+                /*this.props.setTotalUsersCount(response.data.totalCount);*/
+            })
+    }
+}
+
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(setIsFollowingInProgress(true, userId))
+        usersAPI.follow(userId)
+            .then((response) => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(setIsFollowingInProgress(false, userId))
+            })
+    }
+}
+export const unFollow = (userId) => {
+    return (dispatch) => {
+        dispatch(setIsFollowingInProgress(true, userId))
+        usersAPI.unfollow(userId)
+            .then((response) => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unFollowSuccess(userId))
+                }
+                dispatch(setIsFollowingInProgress(false, userId))
+            })
     }
 }
 

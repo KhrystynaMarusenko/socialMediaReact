@@ -10,3 +10,24 @@
 .messagesItems{
     padding: 10px;
 }
+
+.sendBtn{
+    width: 100px;
+    background-color: #282727;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    color: #E8E8E8;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.sendInput{
+    width: 200px;
+    background-color: #282727;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    color: #E8E8E8;
+    margin-top: 10px;
+}

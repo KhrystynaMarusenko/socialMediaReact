@@ -1,13 +1,16 @@
 .nav{
+    width: 95%;
+    position: fixed;
     grid-area: nav;
+    height: 70px;
     display: flex;
     flex-direction: row;
     padding: 10px;
     justify-content: center;
     align-items: center;
-    position: sticky;
     border: 1px solid rgba(232, 232, 232, 0.5);
-    border-left: none;
+    background-color: #171717;
+    z-index: 100;
 }
 
 .item{

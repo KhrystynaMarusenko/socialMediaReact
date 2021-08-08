@@ -1,23 +1,24 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
-import photo from "../../../assets/images/photo_2021-07-09_11-52-45.jpg"
 import Preloader from "../../common/Preloader/Preloader";
+import userPhoto from "../../../assets/images/c7abcd3ce378191a3dddfa4cdb2be46f.png"
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = (props) =>{
     if(!props.profile){
         return <Preloader/>
     }
-    debugger
     return (
             <div className={`${classes.profileInfoHolder}`}>
                 <div className={`${classes.item}`}>
                     <div className={`${classes.imgHolder} `}>
-                        <img src={props.profile.photos.large} alt={"Photo"}/>
+                        <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt={"Photo"}/>
                     </div>
                 </div>
                 <div className={`${classes.profileName} ${classes.item}`}>
                     <h2>{props.profile.fullName}</h2>
                     <p>{props.profile.aboutMe}</p>
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 </div>
 
             </div>

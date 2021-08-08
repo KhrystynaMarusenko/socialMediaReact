@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from "./Users.module.css";
 import {NavLink} from "react-router-dom";
+import userPhoto from "../../assets/images/c7abcd3ce378191a3dddfa4cdb2be46f.png"
 
 
 let Users = (props) => {
@@ -26,15 +27,18 @@ let Users = (props) => {
             {
                 props.users.map(user => <div className={classes.profilesHolder} key={user.id}>
                     <div className={classes.profilesHolderImg}>
-                        <NavLink to={'/profile/' + user.id}>
-                            <img src={user.photos.small} className={classes.profileImg} alt='profile photo small'/>
+                        <NavLink className={classes.link} to={'/profile/' + user.id}>
+                            <img src={user.photos.small ? user.photos.small : userPhoto} className={classes.profileImg}
+                                 alt='profile photo small'/>
                             <h4>{user.name}</h4>
                         </NavLink>
+
                         {user.isFollow
-                            ? <button className={classes.followBtn} onClick={() => {
+                            ? <button disabled={props.isFollowingInProgress.some(id => id === user.id)} className={classes.followBtn} onClick={() => {
                                 props.unFollow(user.id)
                             }}>UNFOLLOW</button>
-                            : <button className={classes.followBtn} onClick={() => {
+
+                            : <button disabled={props.isFollowingInProgress.some(id => id === user.id)} className={classes.followBtn} onClick={() => {
                                 props.follow(user.id)
                             }}>FOLLOW</button>}
 

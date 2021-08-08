@@ -1,7 +1,12 @@
+.link{
+    text-decoration: none;
+    color: #E8E8E8;
+    color: #E8E8E8;
+}
+
 .profileImg{
     width: 100px;
     height: 100px;
-    border: 1px solid black;
     display: block;
     margin-bottom: 10px;
 }
@@ -9,6 +14,12 @@
 .followBtn{
     display: block;
     width: 100px;
+    background-color: #282727;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    color: #E8E8E8;
+    cursor: pointer;
 }
 
 .profilesHolder{
@@ -72,4 +83,5 @@ ul > li{
 .pagesHolder{
     margin-bottom: 10px;
 }
+
 

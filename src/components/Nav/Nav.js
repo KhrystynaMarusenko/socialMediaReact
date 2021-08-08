@@ -1,9 +1,12 @@
 import React from 'react'
 import classes from './Nav.module.css'
 import {NavLink} from "react-router-dom";
-const Nav = () =>{
+import Logo from "../Logo/Logo";
+const Nav = (props) =>{
     return (
         <nav className={classes.nav}>
+            {/*<Logo/>*/}
+
             <div className={classes.item}>
                 <NavLink to='/profile'className={classes.links}>Profile</NavLink>
             </div>
@@ -21,6 +24,11 @@ const Nav = () =>{
             </div>
             <div className={classes.item}>
                 <NavLink to='/settings'className={classes.links}>Settings</NavLink>
+            </div>
+            <div className={classes.item}>
+                {props.isAuth ? props.login
+                    : <NavLink to='/login' className={classes.links}>Login</NavLink>
+                }
             </div>
 
         </nav>

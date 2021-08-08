@@ -1,8 +1,7 @@
 .logoHolder{
     grid-area: logo;
-    border: 1px solid rgba(232, 232, 232, 0.5);
-    border-bottom: none;
-
+    width: 100px;
+    height: 80px;
 }
 
 .logo{

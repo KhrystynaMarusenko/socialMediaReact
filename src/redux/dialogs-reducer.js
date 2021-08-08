@@ -1,3 +1,5 @@
+import {navAPI} from "../api/api";
+
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
@@ -46,5 +48,7 @@ export  const sendMessageCreator = () => {
 export const updateNewMessageBodyCreator = (body) => {
     return {type: UPDATE_NEW_MESSAGE_BODY,body: body}
 }
+
+
 
 export default dialogsReducer
