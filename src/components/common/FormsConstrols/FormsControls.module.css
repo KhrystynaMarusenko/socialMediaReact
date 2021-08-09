@@ -1,0 +1,10 @@
+.inputError{
+    border: 1px solid red !important;
+}
+
+.span{
+    line-height: 32px;
+    margin-left: 10px;
+    color: black;
+    font-weight: bold;
+}

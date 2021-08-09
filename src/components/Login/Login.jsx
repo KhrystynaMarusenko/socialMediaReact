@@ -1,36 +1,55 @@
 import React from "react";
 import {Form, Field} from 'react-final-form'
 import styles from './loginForm.module.css'
-
-const required = (value) => (value ? undefined : "Required");
+import {required} from "../../utils/validators/validations";
+import errorStyles from "../common/FormsConstrols/FormsControls.module.css";
+import {Input} from "../common/FormsConstrols/FormsControls";
+import {connect} from "react-redux";
+import {login, logout} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
 
 
 const LoginForm = (props) => {
     const onSubmit = (formData) => {
         console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
     }
+
+    if(props.isAuth){
+        return <Redirect to={"/profile"}/>
+    }
+
     return (
+
         <Form
+            key={'login form'}
             onSubmit={onSubmit}
             render={({handleSubmit, form, submitting, pristine}) => {
                 return <form onSubmit={handleSubmit} className={styles.form}>
-                    <Field name={'login'} validate={required}>
-                        {({input, meta}) => (
+                    <Field name={'email'} validate={required}>
+                        {({input, meta}) => {
+                            let hasError = meta.error && meta.touched;
+                            return(
                             <div className={styles.inputHolder}>
                                 <label className={styles.label}>Login</label>
-                                <input {...input} type="text" placeholder="Login"/>
-                                {meta.error && meta.touched && <span className={styles.span}>{meta.error}</span>}
+                                <input {...input} type="text" placeholder="Login" className={`${hasError && errorStyles.inputError}`}/>
+                                {hasError && <span className={errorStyles.span}>{meta.error}</span>}
                             </div>
-                        )}
+                            )
+                        }}
                     </Field>
                     <Field name={'password'} validate={required}>
-                        {({input, meta}) => (
+                        {({input, meta}) => {
+                            let hasError = meta.error && meta.touched;
+                            return (
                             <div className={styles.inputHolder}>
                                 <label className={styles.label}>Password</label>
-                                <input {...input} type="password" placeholder="Password"/>
-                                {meta.error && meta.touched && <span className={styles.span}>{meta.error}</span>}
+                                <input {...input} type="password" placeholder="Password" className={`${hasError && errorStyles.inputError}`}/>
+                                {meta.error && meta.touched && <span className={errorStyles.span}>{meta.error}</span>}
                             </div>
-                        )}
+
+                            )
+                        }}
                     </Field>
                     <div>
                         <label className={styles.label}>Remember me</label>
@@ -53,28 +72,6 @@ const LoginForm = (props) => {
                 </form>
             }}
         />
-        /*  <Form
-              onSubmit={(formData) => {
-              console.log(formData)
-          }}
-          >
-              {({handleSubmit}) => (
-                  <form onSubmit={handleSubmit}>
-                      <div>
-                          <Field placeholder={'Login'} name={'login'} component={'input'}/>
-                      </div>
-                      <div>
-                          <Field placeholder={'Password'} name={'password'} component={'input'}/>
-                      </div>
-                      <div>
-                          <Field  component={'input'} name={'rememberMe'} type={'checkbox'}/>Remember me
-                      </div>
-                      <div>
-                          <button>Login</button>
-                      </div>
-                  </form>
-              )}
-          </Form>*/
     )
 }
 
@@ -86,4 +83,11 @@ const Login = (props) => {
     </div>
 }
 
-export default Login
+const mapStateToProps = (state) => {
+    return {
+        isAuth : state.auth.isAuth
+    }
+}
+
+
+export default connect(mapStateToProps, {login, logout})(LoginForm)

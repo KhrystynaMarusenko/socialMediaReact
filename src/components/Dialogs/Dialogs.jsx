@@ -3,22 +3,19 @@ import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
+import {Field, Form} from "react-final-form";
+import styles from "../Login/loginForm.module.css";
 
 
 const Dialogs = (props) => {
-    let dialogsElements = props.dialogsPage.dialogs.map((item) => <DialogItem name={item.name} key={item.id} id={item.id}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map((item) => <DialogItem name={item.name} key={item.id}
+                                                                              id={item.id}/>)
     let messagesElements = props.dialogsPage.messages.map(item => <Message message={item.message} key={item.id}/>)
-    let newMessageBody = props.dialogsPage.newMessageBody;
+    if (!props.isAuth) return <Redirect to={'/login'}/>
 
-    let onSendMessageClick = () =>{
-        props.sendMessage();
+    let onNewMessage = (value) => {
+        props.sendMessage(value.message);
     }
-    let onNewMessageChange = (e) =>{
-        let body = e.target.value;
-        props.updateNewMessageBody(body)
-    }
-    if(!props.isAuth) return <Redirect to={'/login'}/>
-
 
     return (
         <div className={classes.dialogs}>
@@ -27,12 +24,36 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messagesItems}>
                 <div>{messagesElements}</div>
-                <div>
-                    <div><input onChange={onNewMessageChange} className={classes.sendInput} value={newMessageBody} placeholder='Enter your message' /></div>
-                    <div><button onClick={onSendMessageClick} className={classes.sendBtn}>SEND</button></div>
-                </div>
+                <AddMessageForm onSubmit={onNewMessage}/>
             </div>
         </div>
+    )
+}
+
+const AddMessageForm = (props) => {
+    return (
+        <Form
+            onSubmit={props.onSubmit}
+            render={({handleSubmit, form, submitting, pristine}) => {
+                return <form onSubmit={handleSubmit}>
+                    <Field name={'message'}>
+                        {({input, meta}) => (
+                            <div>
+                            <input {...input} type="text" className={classes.sendInput} placeholder="Enter your message"/>
+                        {meta.error && meta.touched && <span className={styles.span}>{meta.error}</span>}
+                            </div>
+                            )}
+                    </Field>
+
+                    <div >
+                        <button type="submit" disabled={submitting} className={classes.sendBtn}>
+                            Submit
+                        </button>
+
+                    </div>
+                </form>
+            }}
+        />
     )
 }
 

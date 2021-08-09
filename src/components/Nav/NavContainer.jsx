@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "./Nav";
 import {connect} from "react-redux";
-import {authorization} from "../../redux/auth-reducer";
+import {authorization, logout} from "../../redux/auth-reducer";
 
 class NavContainer extends React.Component{
     constructor(props) {
@@ -25,4 +25,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {authorization})(NavContainer)
+export default connect(mapStateToProps, {authorization, logout})(NavContainer)

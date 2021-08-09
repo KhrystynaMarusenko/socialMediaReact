@@ -54,12 +54,7 @@
     cursor: pointer;
 }
 
-.span{
-    line-height: 32px;
-    margin-left: 10px;
-    color: black;
-    font-weight: bold;
-}
+
 
 .checkbox{
     margin-left: 15px;

@@ -26,7 +26,8 @@ const Nav = (props) =>{
                 <NavLink to='/settings'className={classes.links}>Settings</NavLink>
             </div>
             <div className={classes.item}>
-                {props.isAuth ? props.login
+                {props.isAuth
+                    ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
                     : <NavLink to='/login' className={classes.links}>Login</NavLink>
                 }
             </div>
