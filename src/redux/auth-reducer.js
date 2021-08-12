@@ -29,11 +29,11 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export const setUserData = (userId, email, login, isAuth) => {
+export const setUserData = (id, email, login, isAuth) => {
     return {
         type: SET_USER_DATE,
         data: {
-            userId,
+            id,
             email,
             login,
             isAuth
@@ -49,8 +49,9 @@ export const setIsFetching = (isFetching) => {
 
 export const authorization = () => {
     return (dispatch) => {
-        authAPI.me()
+        return authAPI.me()
             .then(response => {
+                debugger
                 dispatch(setIsFetching(true))
                 if (response.data.resultCode === 0) {
                     let {id, login, email} = response.data.data;
@@ -65,10 +66,13 @@ export const authorization = () => {
 export const login = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
         .then(response => {
+            debugger
             dispatch(setIsFetching(true))
             if (response.data.resultCode === 0) {
                 dispatch(authorization())
                 dispatch(setIsFetching(false))
+            }else{
+                alert(response.data.messages[0])
             }
         })
 }

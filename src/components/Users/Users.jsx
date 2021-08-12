@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from "./Users.module.css";
 import {NavLink} from "react-router-dom";
-import userPhoto from "../../assets/images/c7abcd3ce378191a3dddfa4cdb2be46f.png"
+import userPhoto from "../../assets/images/user.png"
 
 
 let Users = (props) => {
