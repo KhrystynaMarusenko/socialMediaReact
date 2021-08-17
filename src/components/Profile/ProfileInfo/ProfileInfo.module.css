@@ -28,3 +28,7 @@
 .item{
     width: 45%;
 }
+
+input[type=file]{
+    color:transparent;
+}

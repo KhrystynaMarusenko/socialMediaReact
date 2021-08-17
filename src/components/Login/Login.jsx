@@ -3,7 +3,6 @@ import {Form, Field} from 'react-final-form'
 import styles from './loginForm.module.css'
 import {required} from "../../utils/validators/validations";
 import errorStyles from "../common/FormsConstrols/FormsControls.module.css";
-import {Input} from "../common/FormsConstrols/FormsControls";
 import {connect} from "react-redux";
 import {login, logout} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
@@ -76,12 +75,7 @@ const LoginForm = (props) => {
 }
 
 
-const Login = (props) => {
-    return <div>
-        <h2 className={styles.title}>LOGIN</h2>
-        <LoginForm/>
-    </div>
-}
+
 
 const mapStateToProps = (state) => {
     return {
@@ -90,4 +84,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {login, logout})(LoginForm)
+export default  connect(mapStateToProps, {login, logout})(LoginForm)

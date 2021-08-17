@@ -2,7 +2,7 @@ import React from 'react'
 import errorStyles from "./FormsControls.module.css";
 
 export const Input = (props) =>{
-    debugger
+    
     let hasError = props.error && props.touched;
     return (
         <div>

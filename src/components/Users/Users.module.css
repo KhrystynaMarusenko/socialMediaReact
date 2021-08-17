@@ -1,7 +1,6 @@
 .link{
     text-decoration: none;
     color: #E8E8E8;
-    color: #E8E8E8;
 }
 
 .profileImg{
@@ -60,28 +59,7 @@ ul > li{
     padding: 10px;
 }
 
-.currentPage{
-    font-weight: bold;
-}
-
-.notCurrentPage{
-    text-decoration: underline;
-}
-
-.page{
-    display: inline-block;
-    margin-right: 5px;
-    cursor: pointer;
-    transition: color 0.5s ease-in-out;
-}
 
 
-.page:hover{
-    color: #E8E8E8;
-}
-
-.pagesHolder{
-    margin-bottom: 10px;
-}
 
 

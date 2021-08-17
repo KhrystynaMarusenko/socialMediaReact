@@ -6,7 +6,7 @@ const Logo = () => {
     return (
         <div className={classes.logoHolder}>
             <div className={classes.logo}>
-                <img src={logo}/>
+                <img src={logo} alt={"logo"}/>
             </div>
         </div>
     )
