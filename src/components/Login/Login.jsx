@@ -10,8 +10,7 @@ import {Redirect} from "react-router-dom";
 
 const LoginForm = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData)
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
     if(props.isAuth){
@@ -46,7 +45,6 @@ const LoginForm = (props) => {
                                 <input {...input} type="password" placeholder="Password" className={`${hasError && errorStyles.inputError}`}/>
                                 {meta.error && meta.touched && <span className={errorStyles.span}>{meta.error}</span>}
                             </div>
-
                             )
                         }}
                     </Field>
@@ -54,6 +52,20 @@ const LoginForm = (props) => {
                         <label className={styles.label}>Remember me</label>
                         <Field name="rememberMe" component="input" type="checkbox" className={styles.checkbox}/>
                     </div>
+
+                    {props.captchaUrl && <img src={props.captchaUrl} alt={'captcha'}/>}
+
+                    {props.captchaUrl && <Field name={'captcha'} validate={required}>
+                        {({input, meta}) => {
+                            let hasError = meta.error && meta.touched;
+                            return(
+                                <div className={styles.inputHolder}>
+                                    <input {...input} type="text" className={`${hasError && errorStyles.inputError}`}/>
+                                    {hasError && <span className={errorStyles.span}>{meta.error}</span>}
+                                </div>
+                            )
+                        }}
+                    </Field>}
 
                     <div className={styles.buttonsHolder}>
                         <button type="submit" disabled={submitting} className={styles.button}>
@@ -79,7 +91,8 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isAuth : state.auth.isAuth
+        isAuth : state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 

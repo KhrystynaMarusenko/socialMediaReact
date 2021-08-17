@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, withRouter} from "react-router-dom";
+import {Redirect, Route, withRouter} from "react-router-dom";
 import './App.css';
 import SideBar from "./components/SideBar/SideBar";
 import News from "./components/News/News";
@@ -31,6 +31,7 @@ class App extends React.Component {
                 <NavContainer/>
                 <SideBar/>
                 <div className='content'>
+                    <Route exact path='/' render={() => <Redirect to={"/profile"}/>} />
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/news' render={() => <News/>}/>
